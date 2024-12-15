@@ -1,0 +1,77 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+
+#webcam-container {
+    margin-bottom: 20px;
+}
+
+#label-container {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+#output {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+
+/* CSS */
+.button {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button:hover {
+    background-color: #fff;
+}
+
+.button:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .button {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+}
+
+#textBox {
+    width: 60%;
+    font-family: "Roboto", sans-serif;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 30px;
+    text-align: left;
+    color: #333;
+    resize: none;
+    height: 100px;
+}

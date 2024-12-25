@@ -1,0 +1,10 @@
+.v1{
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px){
+    .v1{
+        flex-direction: column;
+    }
+}

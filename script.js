@@ -1,5 +1,5 @@
    // Link to your trained Teachable Machine model
-   const URL = "https://teachablemachine.withgoogle.com/models/TbTAu6wjr/";
+   const URL = "https://teachablemachine.withgoogle.com/models/xT_po0b7g/";
 
    let model, webcam, labelContainer, maxPredictions;
    let currentText = '';
@@ -27,7 +27,7 @@
 
        // Setup webcam
        const flip = true; // Whether to flip the webcam
-       webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+       webcam = new tmImage.Webcam(350, 350, flip); // width, height, flip
        await webcam.setup(); // Request access to the webcam
        await webcam.play();
        window.requestAnimationFrame(loop);

@@ -10,11 +10,162 @@
     <link rel="stylesheet" href="style.css">
 
     <title>SpeakIdea</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* .start-btn {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            border-radius: 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .start-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        } */
+
+        .columns-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        #webcam-container {
+            width: 100%;
+            border-radius: 35px;
+            max-width: 500px;
+            /* border: 2px solid #ddd; */
+            /* border-radius: 10px; */
+            /* padding: 10px; */
+            background-color: #fff;
+            box-shadow: 2px -2px 6px 9px rgb(102 152 243 / 78%);
+        }
+
+        #textBox {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            min-height: 150px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            font-size: 1rem;
+            resize: none;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        .btn-copy {
+            background-color: #28a745;
+        }
+
+        .btn-copy:hover {
+            background-color: #218838;
+        }
+
+        .btn-search {
+            background-color: #17a2b8;
+        }
+
+        .btn-search:hover {
+            background-color: #117a8b;
+        }
+
+        .btn-random {
+            background-color: #ffc107;
+        }
+
+        .btn-random:hover {
+            background-color: #e0a800;
+        }
+
+
+        /* CSS */
+        .button-45 {
+            animation: fade-in 1s ease-in forwards, fade-out 4s 1s ease-out forwards;
+            background-color: #FFE7E7;
+            background-position: 0 0;
+            border: 1px solid #FEE0E0;
+            border-radius: 11px;
+            box-sizing: border-box;
+            color: #D33A2C;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 33.4929px;
+            list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg) none;
+            padding: 2px 12px;
+            text-align: left;
+            text-decoration: none;
+            text-shadow: none;
+            text-underline-offset: 1px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            word-break: break-word;
+        }
+
+        .button-45:active,
+        .button-45:hover,
+        .button-45:focus {
+            outline: 0;
+        }
+
+
+        .button-45:active {
+            background-color: #D33A2C;
+            box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+            color: #FFFFFF;
+        }
+
+        .button-45:hover {
+            background-color: #FFE3E3;
+            border-color: #FAA4A4;
+        }
+
+        .button-45:active:hover,
+        .button-45:focus:hover,
+        .button-45:focus {
+            background-color: #D33A2C;
+            box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+            color: #FFFFFF;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html"><img alt="logo" src="./logo.png" class="logo" /></a>
                 <button style="border: 2px solid gray;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -24,45 +175,50 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./index.html" style="color: black;">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./how_to_use.html" style="color: black;">How to use SpeakIdea?</a>
-                        </li>
-                        <li class="nav-item">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./gestures_list.html" style="color: black;">List of gestures</a>
-                        </li>
-
+                        <li class="nav-item"><a class="nav-link" href="./index.html" style="color: black;">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./how_to_use.html" style="color: black;">How to
+                                use SpeakIdea?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./gestures_list.html" style="color: black;">List
+                                of gestures</a></li>
                     </ul>
                     <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="./register.php" style="color: black;">Register</a>
+                        <li class="nav-item"><a class="nav-link" href="./register.php"
+                                style="color: black;">Register</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./login.php" style="color: black;">Login</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="./login.php" style="color: black;">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
-    <!-- <h1>Welcome to SpeakIdea</h1> -->
-    <div class="d-flex container v1">
-        <div>
-            <button style="text-align: center;" type="button" onclick="init()"
-                class="btn btn-primary my-4">Start</button>
-            <div id="webcam-container"></div>
-            <div id="label-container"></div>
-        </div>
-        <!-- Text Box to display real-time recognized text -->
-        <div>
-            <textarea  style="width: 50vw; height: 50vh;" id="textBox" readonly placeholder="Recognized text will appear here..."></textarea>
-        </div>
-    </div>
 
+        <!-- Main content -->
+        <div class="text-center">
+            <div class="text-center">
+                <button class="start-btn button-45" onclick="init()">Start Recognizing</button>
+            </div>
+        </div>
+        <!-- Hidden columns (revealed on button click) -->
+        <div id="columns-container" class="columns-container d-none">
+            <!-- Column 1: Webcam -->
+            <div>
+                <div id="webcam-container"></div>
+                <div id="label-container" style="margin-top: 10px;"></div>
+            </div>
+            <!-- Column 2: Textbox and Buttons -->
+            <div>
+                <div id="predicted-text" class="mb-3">Predicted Words:</div>
+                <textarea id="textBox" readonly placeholder="Recognized text will appear here..."></textarea>
+                <div class="button-group">
+                    <button class="btn btn-copy" onclick="copyText()">Copy Text</button>
+                    <button class="btn btn-search" onclick="searchOnGoogle()">Search on Google</button>
+                    <button class="btn btn-random">Random Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>

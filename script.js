@@ -16,7 +16,7 @@ function cleanupWebcam() {
 function restartbtn() {
     const textBox = document.getElementById('textBox');
     console.log(textBox);
-    textBox.append = "";
+    window.location.reload(true)
 }
 // Load the image model and setup the webcam
 async function init() {

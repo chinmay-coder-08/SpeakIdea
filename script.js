@@ -13,12 +13,19 @@ function cleanupWebcam() {
     const webcamContainer = document.getElementById("webcam-container");
     webcamContainer.innerHTML = ''; // Clear previous webcam canvas
 }
-
+function restartbtn() {
+    const textBox = document.getElementById('textBox');
+    console.log(textBox);
+    textBox.append = "";
+}
 // Load the image model and setup the webcam
 async function init() {
     const columnsContainer = document.getElementById("columns-container");
     columnsContainer.classList.remove("d-none");
     columnsContainer.style.opacity = 0;
+    const start_btn = document.getElementsByClassName("start-btn")[0];
+    const btnparent = document.getElementsByClassName("btnparent")[0];
+    btnparent.innerHTML = `   <button class="start-btn button-85" onclick="restartbtn()">Restart</button>`
     setTimeout(() => (columnsContainer.style.opacity = 1), 100);
     cleanupWebcam(); // Clean up any previous webcam instances before starting a new one
 
@@ -87,7 +94,12 @@ function copyText() {
     textBox.setSelectionRange(0, 99999); // For mobile devices
     navigator.clipboard.writeText(textBox.value) // Copy the text to the clipboard
         .then(() => {
-            alert("Text copied to clipboard!");
+            const btn_copy = document.getElementsByClassName("btn-copy")[0];
+            btn_copy.innerHTML = "Copied!";
+            console.log(btn_copy)
+            setTimeout(() => {
+                btn_copy.innerHTML = "Copy text";
+            }, 700);
         })
         .catch(err => {
             alert("Failed to copy text: " + err);
@@ -101,6 +113,16 @@ function searchOnGoogle() {
     if (query) {
         const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         window.open(googleSearchURL, "_blank"); // Open the search in a new tab
+    } else {
+        alert("Text box is empty. Please enter some text to search.");
+    }
+}
+function searchOnWikipedia() {
+    const textBox = document.getElementById("textBox");
+    const query = textBox.value.trim();
+    if (query) {
+        const wikipediaSearchURL = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
+        window.open(wikipediaSearchURL, "_blank"); // Open the search in a new tab
     } else {
         alert("Text box is empty. Please enter some text to search.");
     }

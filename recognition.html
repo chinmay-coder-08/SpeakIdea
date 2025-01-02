@@ -32,6 +32,8 @@
             box-shadow: 1px 1px 5px 7px rgb(74 133 241);
         }
 
+
+
         #textBox {
             font-family: "Roboto";
             width: 100%;
@@ -199,10 +201,27 @@
             border: 2px solid #432faf;
             border-radius: 35px;
         }
+
+        #textBox::-webkit-scrollbar-track {
+            background-color: white;
+        }
+
+        #textBox::-webkit-scrollbar {
+            width: 7px;
+            background-color: #F5F5F5;
+        }
+
+        #textBox::-webkit-scrollbar-thumb {
+            background-color: #c1c1c1;
+            border-radius: 1rem;
+        }
     </style>
 </head>
 
 <body>
+    <div class="scrollbar" id="style-8">
+        <div class="force-overflow"></div>
+    </div>
     <div class="container">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">

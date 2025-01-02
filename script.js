@@ -1,9 +1,8 @@
 // Link to your trained Teachable Machine model
-const URL = "https://teachablemachine.withgoogle.com/models/xT_po0b7g/";
-
+const URL = "./my_model/";
 let model, webcam, labelContainer, maxPredictions;
 let currentText = '';
-
+let currentCamera = 'front';
 // Cleanup previous webcam and stop any active webcam stream
 function cleanupWebcam() {
     if (webcam) {
@@ -25,7 +24,9 @@ async function init() {
     columnsContainer.style.opacity = 0;
     const start_btn = document.getElementsByClassName("start-btn")[0];
     const btnparent = document.getElementsByClassName("btnparent")[0];
-    btnparent.innerHTML = `   <button class="start-btn button-85" onclick="restartbtn()">Restart</button>`
+    btnparent.innerHTML = `   <button class="start-btn button-85" onclick="restartbtn()">Restart</button>
+    <button id="switch-camera-btn" onclick="switchCamera()">Switch to Back
+    Camera</button>`
     setTimeout(() => (columnsContainer.style.opacity = 1), 100);
     cleanupWebcam(); // Clean up any previous webcam instances before starting a new one
 
@@ -35,11 +36,28 @@ async function init() {
     // Load the model and metadata
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
-
+    setupWebcam(currentCamera);
     // Setup webcam
-    const flip = true; // Whether to flip the webcam
+    // const flip = true; // Whether to flip the webcam
+    // webcam = new tmImage.Webcam(500, 350, flip); // width, height, flip
+    // await webcam.setup(); // Request access to the webcam
+    // await webcam.play();
+    // window.requestAnimationFrame(loop);
+
+    // // Append webcam to the DOM
+    // document.getElementById("webcam-container").appendChild(webcam.canvas);
+    // const canvas = webcam.canvas;
+    // canvas.classList.add("styled-webcam");
+    // // Create a container for the labels
+    // labelContainer = document.getElementById("label-container");
+    // for (let i = 0; i < maxPredictions; i++) {
+    //     labelContainer.appendChild(document.createElement("div"));
+    // }
+}
+async function setupWebcam(cameraType) {
+    const flip = (cameraType === 'front'); // Flip the webcam only for the front camera
     webcam = new tmImage.Webcam(500, 350, flip); // width, height, flip
-    await webcam.setup(); // Request access to the webcam
+    await webcam.setup({ facingMode: cameraType }); // Use the appropriate camera
     await webcam.play();
     window.requestAnimationFrame(loop);
 
@@ -53,7 +71,13 @@ async function init() {
         labelContainer.appendChild(document.createElement("div"));
     }
 }
-
+function switchCamera() {
+    currentCamera = (currentCamera === 'front') ? 'environment' : 'front'; // Toggle between 'front' and 'environment'
+    cleanupWebcam(); // Clean up the current webcam instance
+    setupWebcam(currentCamera); // Set up the new camera
+    const btn = document.getElementById("switch-camera-btn");
+    btn.innerHTML = (currentCamera === 'front') ? 'Switch to Back Camera' : 'Switch to Front Camera'; // Update button text
+}
 // Loop to update the webcam and predictions
 async function loop() {
     webcam.update(); // Update the webcam frame
@@ -61,28 +85,58 @@ async function loop() {
     window.requestAnimationFrame(loop);
 }
 
-// Run the webcam image through the model
+let lastDetectedClass = ''; // Variable to track the last detected gesture
+let lastDetectedTime = 0;   // Timestamp of the last detection
+const MIN_TIME_DIFF = 700;  // Minimum time difference in milliseconds
+
 async function predict() {
     // Predict the gesture from the webcam image
     const prediction = await model.predict(webcam.canvas);
 
-    // Process each class prediction
+    // Find the class with the highest probability
+    let highestProbability = 0;
+    let detectedClass = '';
     for (let i = 0; i < maxPredictions; i++) {
         const classPrediction = prediction[i].className;
         const probability = prediction[i].probability.toFixed(2);
-        labelContainer.childNodes[i].innerHTML = `${classPrediction}: ${probability}`;
 
-        // If a gesture is detected with a high probability, append to the output text
-        if (probability > 0.7) { // Adjust threshold if needed
-            if (classPrediction === 'Space') {
-                currentText += ' ';
-            } else {
-                currentText += classPrediction;
-            }
-
-            // Update the text box with the current recognized text
-            document.getElementById("textBox").value = currentText;
+        // Update the highest probability and corresponding class
+        if (probability > highestProbability) {
+            highestProbability = probability;
+            detectedClass = classPrediction;
         }
+
+        // Display probabilities in the label container
+        labelContainer.childNodes[i].innerHTML = `${classPrediction}: ${probability}`;
+    }
+
+    // Ignore the "nothing" class if it's detected
+    if (detectedClass === 'Nothing' && highestProbability > 0.7) {
+        return; // Do nothing when "Nothing" is detected
+    }
+
+    const currentTime = Date.now(); // Get the current time in milliseconds
+
+    // Process detected gestures
+    if (highestProbability > 0.7) { // Adjust the threshold if necessary
+        if (detectedClass === 'Space') {
+            // Add space only if the previous gesture was not "Space"
+            if (lastDetectedClass !== 'Space') {
+                currentText += ' ';
+            }
+        } else {
+            // Add the detected class only if time difference > 700 ms
+            if (lastDetectedClass !== detectedClass || (currentTime - lastDetectedTime) >= MIN_TIME_DIFF) {
+                currentText += detectedClass;
+                lastDetectedTime = currentTime; // Update the last detected time
+            }
+        }
+
+        // Update the last detected gesture
+        lastDetectedClass = detectedClass;
+
+        // Update the text box with recognized text
+        document.getElementById("textBox").value = currentText;
     }
 }
 

@@ -14,8 +14,8 @@ function cleanupWebcam() {
 }
 function restartbtn() {
     const textBox = document.getElementById('textBox');
-    console.log(textBox);
-    window.location.reload(true)
+    currentText = "";
+    textBox.value = "";
 }
 // Load the image model and setup the webcam
 async function init() {
@@ -24,8 +24,7 @@ async function init() {
     columnsContainer.style.opacity = 0;
     const start_btn = document.getElementsByClassName("start-btn")[0];
     const btnparent = document.getElementsByClassName("btnparent")[0];
-    btnparent.innerHTML = `   <button class="start-btn button-85" onclick="restartbtn()">Restart</button>
-    <button id="switch-camera-btn" onclick="switchCamera()">Switch to Back
+    btnparent.innerHTML = `   <button class="start-btn button-85" onclick="switchCamera()">Switch to Back
     Camera</button>`
     setTimeout(() => (columnsContainer.style.opacity = 1), 100);
     cleanupWebcam(); // Clean up any previous webcam instances before starting a new one
@@ -171,13 +170,8 @@ function searchOnGoogle() {
         alert("Text box is empty. Please enter some text to search.");
     }
 }
-function searchOnWikipedia() {
+function clearText() {
     const textBox = document.getElementById("textBox");
-    const query = textBox.value.trim();
-    if (query) {
-        const wikipediaSearchURL = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`;
-        window.open(wikipediaSearchURL, "_blank"); // Open the search in a new tab
-    } else {
-        alert("Text box is empty. Please enter some text to search.");
-    }
+    currentText = "";
+    textBox.value = "";
 }

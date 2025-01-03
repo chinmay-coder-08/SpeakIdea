@@ -215,6 +215,190 @@
             background-color: #c1c1c1;
             border-radius: 1rem;
         }
+
+        /* Styling for loading spinner */
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            /* Light gray */
+            border-top: 6px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* .webcam-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        } */
+        /* Small devices (phones) */
+        @media (max-width: 576px) {
+            .columns-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #webcam-container {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            #textBox {
+                max-width: 100%;
+                min-width: 95vw;
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Medium devices (tablets) */
+        @media (min-width: 577px) and (max-width: 768px) {
+            .columns-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            #webcam-container {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            #textBox {
+                font-size: 18px;
+                min-width: 95vw;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Large devices (desktops) */
+        @media (min-width: 769px) and (max-width: 992px) {
+            .columns-container {
+                gap: 20px;
+            }
+
+            #webcam-container {
+                max-width: 450px;
+            }
+
+            #textBox {
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            .btn {
+                padding: 10px 18px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Extra-large devices (large desktops) */
+        @media (min-width: 993px) {
+            .columns-container {
+                gap: 30px;
+            }
+
+            #webcam-container {
+                max-width: 500px;
+            }
+
+            #textBox {
+                font-size: 20px;
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Adjust Navbar for smaller devices */
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                width: 5rem;
+                height: 5rem;
+            }
+
+            .nav-link {
+                font-size: 2rem;
+            }
+
+            .styled-webcam {
+                width: 25rem;
+            }
+        }
+
+        /* Adjust font sizes for very small devices */
+        @media (max-width: 400px) {
+            #predicted-text {
+                font-size: medium;
+            }
+
+            .button-group button {
+                font-size: 0.8rem;
+            }
+
+            #textBox {
+                font-size: 14px;
+                min-width: 95vw;
+            }
+
+            #overlay-text {
+                font-family: "Roboto", sans-serif;
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #fff;
+                background-color: rgba(0, 0, 0, 0.5);
+                /* Transparent black background */
+                border-radius: 5px;
+                padding: 5px 10px;
+                position: absolute;
+                top: 10px;
+                /* Adjust as needed */
+                left: 10px;
+                /* Adjust as needed */
+                z-index: 10;
+                /* Ensure it's above the webcam */
+                pointer-events: none;
+                /* So it doesn't block interactions with the webcam */
+            }
+        }
     </style>
 </head>
 
@@ -260,7 +444,8 @@
         <div id="columns-container" class="columns-container d-none">
             <!-- Column 1: Webcam -->
             <div>
-                <div id="webcam-container"></div>
+                <div id="webcam-container">
+                </div>
                 <div id="label-container" style="margin-top: 10px;"></div>
             </div>
             <!-- Column 2: Textbox and Buttons -->
@@ -269,9 +454,9 @@
                 <textarea id="textBox" readonly placeholder="Recognized text will appear here..."></textarea>
                 <div class="button-group">
                     <!-- <button class="button-32" role="button">Button 32</button> -->
+                    <button class="btn btn-random" onclick="clearText()">Clear text</button>
                     <button class="btn btn-copy" onclick="copyText()">Copy Text</button>
                     <button class="btn btn-search" onclick="searchOnGoogle()">Search on Google</button>
-                    <button class="btn btn-random" onclick="searchOnWikipedia()">Search on Wikipedia</button>
                 </div>
             </div>
         </div>

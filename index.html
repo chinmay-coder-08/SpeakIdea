@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>SpeakIdea | Home</title>
 </head>
 
@@ -16,37 +14,37 @@
     <body>
         <div class="hero-section">
             <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-dark">
+                <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
                         <a class="navbar-brand" href=""><img alt="logo" src="./logo.png" class="logo" /></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                        <button style="border: 2px solid gray;" class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="" style="color: black;">Home</a>
+                                    <a class="nav-link" href="./index.html">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./how_to_use.html" style="color: black;">How to use
+                                    <a class="nav-link" href="./html/how_to_use.html">How to use
                                         SpeakIdea?</a>
                                 </li>
                                 <li class="nav-item">
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./gestures_list.html" style="color: black;">List of
+                                    <a class="nav-link" href="./html/gestures_list.html">List of
                                         gestures</a>
                                 </li>
 
                             </ul>
                             <ul class="navbar-nav mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./register.html" style="color: black;">Register</a>
+                                    <a class="nav-link" href="./register.html">Register</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./login.html" style="color: black;">Login</a>
+                                    <a class="nav-link" href="./login.html">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,14 +54,17 @@
             <div class="welcomeheading">
                 <h1 class="welcome mx-4">
                     <span class="welcome-text ">Welcome to</span>
-                    <span class="notesidea-text">SpeakIdea!</span>
+                    <span class="speakidea-text">SpeakIdea!</span>
                 </h1>
-                <h3 class="welcomedesc mx-4">Not able to speak ! No worries You can speak with SpeakIdea. Use special
-                    hand gestures to speak</h3>
+                <h3 class="welcomedesc mx-4"><span class="fw-bold text-decoration-underline">Not able</span> to speak?
+                    No worries!! You can speak with SpeakIdea. Use special
+                    <span class="fw-bold text-decoration-underline">hand gestures</span> to speak
+                </h3>
                 <h1>
                     <a class="btn btn-dark mx-4" href="./recognition.html">Get started</a></button>
                 </h1>
             </div>
+            <!-- Wave -->
             <div class="custom-shape-divider-bottom-1643471312">
                 <div class="custom-shape-divider-bottom-1643471356">
                     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
@@ -75,13 +76,10 @@
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-        <script src="./script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+        <script src="./js/tf.min.js"></script>
+        <script src="./js/teachablemachine-image.min.js"></script>
+        <script src="./js/script.js"></script>
+        <script src="./js/bootstrap.bundle.min.js"></script>
     </body>
 
 </html>

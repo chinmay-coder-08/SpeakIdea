@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.first_heading {
+  font-family: SF Pro Display, "Roboto";
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Navbar */
+ul {
+  list-style: none;
+}
+
+nav li a {
+  color: black;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  margin-right: -23px;
+  margin-bottom: -9px;
+  transition: 0.15s ease-in-out;
+}
+
+.logo:hover {
+  padding: 6px;
+}
+
+.navbar-collapse {
+  margin: 13px 10px;
+}
+
+.nav-item {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 30px;
+}
+
+.fontsize1 {
+  font-size: 25px;
+}
+
+.fontsize2 {
+  font-size: 22px;
+}
+
+.heading {
+  color: #1048d3;
+}
+
+.hero-section {
+  height: 90vh;
+  height: 90vh;
+  background: linear-gradient(90deg, #0DD2FB 0%, #50C1FA 51%, #51EFFD 92%, #51EFFD 100%);
+  position: relative;
+  top: 0px;
+  position: relative;
+  top: 0px;
+}
+
+.navbar-collapse {
+  height: auto;
+  /* Auto allows the navbar to expand correctly */
+  margin: 13px 10px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  margin-right: -23px;
+  margin-bottom: -9px;
+  transition: 0.15s ease-in-out;
+}
+
+.logo:hover {
+  padding: 6px;
+}
+
+.navbar-collapse {
+  margin: 13px 10px;
+}
+
+.nav-item {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 30px;
+}
+
+.nav-link:hover {
+  color: rgb(119 112 112) !important;
+}
+
+.welcome-text {
+  font-family: 'Roboto', sans-serif;
+}
+
+.speakidea-text {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.welcome {
+  color: rgb(5, 21, 113);
+  font-family: Roboto;
+  font-size: 63px;
+}
+
+.welcomedesc {
+  color: rgb(5, 21, 113);
+  font-family: Roboto;
+  font-weight: Medium;
+  width: 53vw;
+  font-size: 29px;
+}
+
+.curve-gradient {
+  background: no-repeat bottom left;
+  width: 100%;
+}
+
+/* Wave */
+.custom-shape-divider-bottom-1643471356 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1643471356 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 87px;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+}
+
+.custom-shape-divider-bottom-1643471356 .shape-fill {
+  fill: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .welcome {
+    font-weight: bolder;
+  }
+
+  .welcomedesc {
+    width: 100vw;
+    font-size: 2rem;
+    width:auto;
+  }
+
+  .welcomeheading {
+    width: 100vw;
+  }
+}

@@ -10,20 +10,11 @@
   box-sizing: border-box;
 }
 
-.first_heading {
-  font-family: SF Pro Display, "Roboto";
-  font-weight: 600;
-  text-align: center;
-}
-
 /* Navbar */
 ul {
   list-style: none;
 }
 
-nav li a {
-  color: black;
-}
 
 .logo {
   width: 90px;
@@ -42,8 +33,9 @@ nav li a {
 }
 
 .nav-item {
-  font-family: "Alegreya Sans", sans-serif;
+  font-family: "Titillium Web", sans-serif;
   font-size: 30px;
+  font-weight: bold;
 }
 
 .fontsize1 {
@@ -59,13 +51,14 @@ nav li a {
 }
 
 .hero-section {
-  height: 90vh;
-  height: 90vh;
+  min-height: 100vh;
+  /* Ensures the section takes at least the full screen height */
   background: linear-gradient(90deg, #0DD2FB 0%, #50C1FA 51%, #51EFFD 92%, #51EFFD 100%);
   position: relative;
-  top: 0px;
-  position: relative;
-  top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Ensures content and wave stay within the section */
 }
 
 .navbar-collapse {
@@ -96,11 +89,20 @@ nav li a {
 }
 
 .nav-link:hover {
-  color: rgb(119 112 112) !important;
+  color: black;
 }
 
 .welcome-text {
   font-family: 'Roboto', sans-serif;
+}
+
+.welcomeheading {
+  flex-grow: 1;
+  /* Allows the content to grow dynamically */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Adjust padding for responsiveness */
 }
 
 .speakidea-text {
@@ -112,16 +114,26 @@ nav li a {
 
 .welcome {
   color: rgb(5, 21, 113);
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-size: 63px;
 }
 
 .welcomedesc {
   color: rgb(5, 21, 113);
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-weight: Medium;
   width: 53vw;
   font-size: 29px;
+}
+
+.get-started-btn {
+  font-family: "Roboto", sans-serif;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.get-started-btn:hover {
+  background-color: #5f5959;
+  border-color: #5f5959;
 }
 
 .curve-gradient {
@@ -131,13 +143,10 @@ nav li a {
 
 /* Wave */
 .custom-shape-divider-bottom-1643471356 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
+  position: relative;
+  /* Change from absolute to relative */
   transform: rotate(180deg);
+  width: 100%;
 }
 
 .custom-shape-divider-bottom-1643471356 svg {
@@ -156,18 +165,20 @@ nav li a {
   fill: #ffffff;
 }
 
+
 @media (max-width: 768px) {
   .welcome {
-    font-weight: bolder;
+    font-size: 3rem;
+    font-weight: bold;
   }
 
   .welcomedesc {
-    width: 100vw;
-    font-size: 2rem;
-    width:auto;
+    font-size: 1.7rem;
+    margin: 0 1rem;
+    width: fit-content;
   }
 
-  .welcomeheading {
-    width: 100vw;
+  .get-started-btn {
+    margin-top: 2rem;
   }
 }

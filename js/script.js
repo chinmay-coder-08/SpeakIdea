@@ -22,9 +22,9 @@ async function init() {
     const columnsContainer = document.getElementById("columns-container");
     columnsContainer.classList.remove("d-none");
     columnsContainer.style.opacity = 0;
-    const start_btn = document.getElementsByClassName("start-btn")[0];
+    const start_btn = document.getElementsByClassName("start-recognizing")[0];
     const btnparent = document.getElementsByClassName("btnparent")[0];
-    btnparent.innerHTML = ` <button class="start-btn" onclick="switchCamera()">Switch Camera</button>`
+    btnparent.innerHTML = ` <button class="start-recognizing" onclick="switchCamera()">Switch Camera</button>`
     setTimeout(() => (columnsContainer.style.opacity = 1), 100);
     cleanupWebcam(); // Clean up any previous webcam instances before starting a new one
 
@@ -130,12 +130,17 @@ function copyText() {
     textBox.setSelectionRange(0, 99999); // For mobile devices
     navigator.clipboard.writeText(textBox.value) // Copy the text to the clipboard
         .then(() => {
-            const btn_copy = document.getElementsByClassName("btn-copy")[0];
-            btn_copy.innerHTML = "Copied!";
-            console.log(btn_copy)
-            setTimeout(() => {
-                btn_copy.innerHTML = "Copy text";
-            }, 700);
+            if (textBox.value == "") {
+                alert("No text is recognised")
+            }
+            else {
+                const btn_copy = document.getElementsByClassName("btn-copy")[0];
+                btn_copy.innerHTML = "Copied!";
+                console.log(btn_copy)
+                setTimeout(() => {
+                    btn_copy.innerHTML = "Copy text";
+                }, 700);
+            }
         })
         .catch(err => {
             alert("Failed to copy text: " + err);

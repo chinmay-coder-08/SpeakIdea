@@ -11,15 +11,12 @@
 </head>
 
 <body>
-    <div class="scrollbar" id="style-8">
-        <div class="force-overflow"></div>
-    </div>
     <div class="container">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="./index.html"><img alt="logo" src="./logo.png" class="logo" /></a>
-                <button style="border: 2px solid gray;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,10 +41,10 @@
         <!-- Main content -->
         <div class="text-center">
             <div class="text-center btnparent">
-                <button class="start-btn" onclick="init()">Start Recognizing</button>
+                <button class="start-recognizing" onclick="init()">Start Recognizing</button>
             </div>
         </div>
-        <!-- Hidden columns (revealed on button click) -->
+        <!-- Column -->
         <div id="columns-container" class="columns-container d-none">
             <!-- Column 1: Webcam -->
             <div>
@@ -55,12 +52,11 @@
                 </div>
                 <div id="label-container" style="margin-top: 10px;"></div>
             </div>
-            <!-- Column 2: Textbox and Buttons -->
+            <!-- Column 2: Textbox -->
             <div>
                 <div id="predicted-text" class="mb-3">Predicted Words:</div>
                 <textarea id="textBox" readonly placeholder="Recognized text will appear here..."></textarea>
                 <div class="button-group">
-                    <!-- <button class="button-32" role="button">Button 32</button> -->
                     <button class="btn btn-random function-btn" onclick="clearText()">Clear text</button>
                     <button class="btn btn-copy function-btn" onclick="copyText()">Copy Text</button>
                     <button class="btn btn-search function-btn" onclick="searchOnGoogle()">Search on Google</button>

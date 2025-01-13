@@ -1,0 +1,4 @@
+Good model training
+Predicted words Functionality
+Gestures list page
+How to use page

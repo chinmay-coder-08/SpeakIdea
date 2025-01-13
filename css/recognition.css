@@ -95,18 +95,18 @@
     background-color: #117a8b;
 }
 
-.btn-random {
+.btn-cleartext {
     background-color: #fff000;
     border-radius: 12px;
     color: #000;
 }
 
-.btn-random:hover {
+.btn-cleartext:hover {
     background-color: #e0a800;
 }
 
 .function-btn {
-    min-width: 110px;
+    min-width: 130px;
 }
 
 .function-btn:not(:disabled):hover,
@@ -169,6 +169,14 @@
     animation: glowing-start-recognizing 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
+}
+
+#lastDetectedLetter {
+    text-align: center;
+    font-size: xxx-large;
+    font-weight: bold;
+    font-family: "Roboto";
+    margin-top: 5px;
 }
 
 @keyframes glowing-start-recognizing {

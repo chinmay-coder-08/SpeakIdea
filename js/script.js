@@ -34,6 +34,7 @@ async function init() {
     // Load the model and metadata
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
+    console.log(maxPredictions);
     setupWebcam(currentCamera);
 }
 async function setupWebcam(cameraType) {
@@ -71,6 +72,8 @@ let lastDetectedClass = ''; // Variable to track the last detected gesture
 let lastDetectedTime = 0;   // Timestamp of the last detection
 const MIN_TIME_DIFF = 700;  // Minimum time difference in milliseconds
 
+let lastDetectedTimeout; // To manage the timeout
+
 async function predict() {
     // Predict the gesture from the webcam image
     const prediction = await model.predict(webcam.canvas);
@@ -100,25 +103,42 @@ async function predict() {
     const currentTime = Date.now(); // Get the current time in milliseconds
 
     // Process detected gestures
+    let lastDetectedLetter = ""; // Initialize last detected letter
     if (highestProbability > 0.7) { // Adjust the threshold if necessary
         if (detectedClass === 'Space') {
             // Add space only if the previous gesture was not "Space"
             if (lastDetectedClass !== 'Space') {
                 currentText += ' ';
+                lastDetectedLetter = ' '; // The last detected letter is a space
             }
         } else {
             // Add the detected class only if time difference > 700 ms
             if (lastDetectedClass !== detectedClass || (currentTime - lastDetectedTime) >= MIN_TIME_DIFF) {
                 currentText += detectedClass;
+                lastDetectedLetter = detectedClass; // Update the last detected letter
                 lastDetectedTime = currentTime; // Update the last detected time
             }
         }
 
-        // Update the last detected gesture
-        lastDetectedClass = detectedClass;
+        lastDetectedClass = detectedClass; // Update the last detected gesture
 
         // Update the text box with recognized text
         document.getElementById("textBox").value = currentText;
+
+        // Display the last detected letter
+        if (lastDetectedLetter) {
+            document.getElementById("lastDetectedLetter").textContent = lastDetectedClass;
+
+            // Clear any previous timeout
+            if (lastDetectedTimeout) {
+                clearTimeout(lastDetectedTimeout);
+            }
+
+            // Set a timeout to clear the displayed letter after 0.7 seconds
+            lastDetectedTimeout = setTimeout(() => {
+                document.getElementById("lastDetectedLetter").textContent = ''; // Clear the letter
+            }, 700); // 700 ms timeout
+        }
     }
 }
 
@@ -143,7 +163,7 @@ function copyText() {
             }
         })
         .catch(err => {
-            alert("Failed to copy text: " + err);
+            alert("Failed to copy text: ");
         });
 }
 
@@ -160,6 +180,15 @@ function searchOnGoogle() {
 }
 function clearText() {
     const textBox = document.getElementById("textBox");
-    currentText = "";
-    textBox.value = "";
+    const cleartextparent = document.getElementsByClassName("cleartextparent")[0];
+    if (currentText == "") {
+        alert("No text to clear!")
+    } else {
+        currentText = "";
+        textBox.value = "";
+        cleartextparent.innerHTML = `<button class="btn btn-cleartext function-btn" onclick="clearText()">Text cleared!</button>`
+        setTimeout(() => {
+            cleartextparent.innerHTML = ` <button class="btn btn-cleartext function-btn" onclick="clearText()">Clear text</button>`
+        }, 700);
+    }
 }

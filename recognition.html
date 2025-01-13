@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/recognition.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>SpeakIdea</title>
+    <title>SpeakIdea | Recognition</title>
 </head>
 
 <body>
@@ -50,14 +50,17 @@
             <div>
                 <div id="webcam-container">
                 </div>
-                <div id="label-container" style="margin-top: 10px;"></div>
+                <div id="lastDetectedLetter"></div>
+                <div id="label-container" style="margin-top: 10px; display: none;"></div>
             </div>
             <!-- Column 2: Textbox -->
             <div>
-                <div id="predicted-text" class="mb-3">Predicted Words:</div>
+                <div id="predicted-text" class="mb-3">Predicted Letters:</div>
                 <textarea id="textBox" readonly placeholder="Recognized text will appear here..."></textarea>
                 <div class="button-group">
-                    <button class="btn btn-random function-btn" onclick="clearText()">Clear text</button>
+                    <div class="cleartextparent">
+                        <button class="btn btn-cleartext function-btn" onclick="clearText()">Clear text</button>
+                    </div>
                     <button class="btn btn-copy function-btn" onclick="copyText()">Copy Text</button>
                     <button class="btn btn-search function-btn" onclick="searchOnGoogle()">Search on Google</button>
                 </div>
